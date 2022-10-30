@@ -41,8 +41,8 @@
         <br>
         <br>
 
-        <button type="reset" >Clear</button>
-        <button type="submit" name="btn_register">Register</button>
+        <button type="reset" class="btn btn-warning" >Clear</button>
+        <button type="submit" class="btn btn-success" name="btn_register">Register</button>
 
 
 
@@ -68,7 +68,9 @@ if(isset($_POST['btn_register'])){
 
     $sql = "INSERT INTO users(name, surname, email, password, status, role, dateAdded) VALUES('$name', '$surname', '$email', '$password', '$status', '$role', '$dateAdded')";
     if(mysqli_query($con, $sql)){
-        echo 'Registration Successfully you can now login';
+        $_SESSION['type'] = 's';
+        $_SESSION['err'] = 'Registration Successful, You can now login';
+        header("location:login.php");
     }
     else{
         echo 'Error: ' . mysqli_error($con);

@@ -31,8 +31,8 @@
         <br>
         <br>
 
-        <button type="reset" >Clear</button>
-        <button type="submit" name="btn_login">Login</button>
+        <button type="reset" class="btn btn-warning">Clear</button>
+        <button type="submit" name="btn_login" class="btn btn-success">Login</button>
 
 
 
@@ -66,14 +66,20 @@ if(isset($_POST['btn_login'])){
             $_SESSION['email'] = $rows['email'];
             $_SESSION['role'] = $rows['role'];
 
+            $_SESSION['type'] = 's';
+            $_SESSION['err'] = 'Welcome back';
             header("location:index.php");
         }
         else{
-            echo 'password not correct';
+            $_SESSION['type'] = 'w';
+            $_SESSION['err'] = 'Incorrect Password';
+            header("location:login.php");
         }
     }
     else{
-        echo 'Email not found';
+        $_SESSION['type'] = 'd';
+        $_SESSION['err'] = 'Email not found';
+        header("location:login.php");
     }
 
 

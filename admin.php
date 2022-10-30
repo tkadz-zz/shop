@@ -34,7 +34,7 @@
         <input type="number" name="itemPrice" placeholder="Enter item price" required>
         <br>
         <br>
-        <button type="submit" name="btn_add">Add Item</button>
+        <button type="submit" class="btn btn-success" name="btn_add">Add Item</button>
     </form>
 </div>
 
@@ -44,7 +44,7 @@
 
 
 <div>
-    <table>
+    <table class="table">
         <thead>
         <tr>
             <th>#</th>
@@ -95,6 +95,8 @@ if(isset($_POST['btn_add'])) {
 
     $sql = "INSERT INTO items(name, price, dateAdded) VALUES('$name', '$price', '$dateAdded')";
     if (mysqli_query($con, $sql)) {
+        $_SESSION['type'] = 's';
+        $_SESSION['err'] = 'Item Added Successfully';
         header('location: admin.php');
     } else {
         echo 'Error: ' . mysqli_error($con);
